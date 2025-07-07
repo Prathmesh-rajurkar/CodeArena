@@ -2,16 +2,32 @@ import { NextRequest, NextResponse } from "next/server";
 import { dbConnect } from "@/lib/db";
 import Question from "@/models/Question";
 import { runCodeOnJudge0 } from "@/lib/judge0";
+import Submission from "@/models/Submission";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 export async function POST(req: NextRequest) {
   await dbConnect();
-
+    const session = await getServerSession(authOptions);
+    console.log(session);
+    const userId = session?.user?.id;
+    if(!userId){
+        return NextResponse.json(
+            { error: "Unauthorized" },
+            { status: 401 }
+        );
+    }else{
+        console.log(userId);   
+    }
   try {
     const { code, language_id, questionId } = await req.json();
 
     const question = await Question.findById(questionId);
     if (!question) {
-      return NextResponse.json({ error: "Question not found" }, { status: 404 });
+      return NextResponse.json(
+        { error: "Question not found" },
+        { status: 404 }
+      );
     }
 
     const testCases = question.test_cases;
@@ -36,12 +52,24 @@ export async function POST(req: NextRequest) {
 
     const allPassed = results.every((r) => r.status === "✅ Passed");
 
+    await Submission.create({
+      question_id: question._id,
+      user_id: userId,
+      language: language_id,
+      code,
+      result: allPassed ? "Accepted" : "Wrong Answer",
+      output: JSON.stringify(results),
+    });
+
     return NextResponse.json({
       verdict: allPassed ? "Accepted" : "Wrong Answer",
       results,
     });
   } catch (error) {
     console.error("Submit error:", error);
-    return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Something went wrong" },
+      { status: 500 }
+    );
   }
 }

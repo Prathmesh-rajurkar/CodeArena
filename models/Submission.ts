@@ -7,7 +7,7 @@ const SubmissionSchema = new mongoose.Schema(
       ref: "Question",
       required: true,
     },
-    user_id: { type: String },
+    user_id: { type: String, required: true },
     language: String,
     code: String,
     result: String,
