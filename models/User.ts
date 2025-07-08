@@ -9,6 +9,9 @@ export interface IUser {
   solvedQuestions?: mongoose.Types.ObjectId[];
   createdAt?: Date;
   updatedAt?: Date;
+  streak?: number;
+  maxStreak?: number;
+  lastSolved?: Date;
 }
 
 const userSchema = new Schema<IUser>(
@@ -19,6 +22,9 @@ const userSchema = new Schema<IUser>(
     solvedQuestions: [
       { type: mongoose.Schema.Types.ObjectId, ref: "Question" },
     ],
+    streak: { type: Number, default: 0 },
+    maxStreak: { type: Number, default: 0 },
+    lastSolved: { type: Date, default: null },
   },
   {
     timestamps: true,

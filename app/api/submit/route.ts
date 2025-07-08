@@ -51,19 +51,43 @@ export async function POST(req: NextRequest) {
 
     const allPassed = results.every((r) => r.status === "Passed");
     if (allPassed && userEmail) {
-      await User.findOneAndUpdate(
-        { email: userEmail },
-        { $addToSet: { solvedQuestions: question._id } }
+      const user = await User.findOne({ email: userEmail });
+
+      const today = new Date();
+      const last = new Date(user.lastSolved);
+      const diffDays = Math.floor(
+        (today.getTime() - last.getTime()) / (1000 * 60 * 60 * 24)
       );
+
+      let newStreak = user.streak || 0;
+      if (diffDays === 1) {
+        newStreak += 1; // ✅ continued streak
+      } else if (diffDays === 0) {
+        newStreak = newStreak; // ✅ same day
+      } else {
+        newStreak = 1; // 🔁 reset streak
+      }
+
+      await User.updateOne(
+        { email: userEmail },
+        {
+          $set: {
+            lastSolved: today,
+            streak: newStreak,
+            maxStreak: Math.max(user.maxStreak || 0, newStreak),
+          },
+          $addToSet: { solvedQuestions: question._id },
+        }
+      );
+      await Submission.create({
+        question_id: question._id,
+        user_id: userId,
+        language: language_id,
+        code,
+        result: allPassed ? "Accepted" : "Wrong Answer",
+        output: JSON.stringify(results),
+      });
     }
-    await Submission.create({
-      question_id: question._id,
-      user_id: userId,
-      language: language_id,
-      code,
-      result: allPassed ? "Accepted" : "Wrong Answer",
-      output: JSON.stringify(results),
-    });
 
     return NextResponse.json({
       verdict: allPassed ? "Accepted" : "Wrong Answer",
