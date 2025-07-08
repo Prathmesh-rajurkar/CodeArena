@@ -5,20 +5,19 @@ import { runCodeOnJudge0 } from "@/lib/judge0";
 import Submission from "@/models/Submission";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import User from "@/models/User";
 
 export async function POST(req: NextRequest) {
   await dbConnect();
-    const session = await getServerSession(authOptions);
-    console.log(session);
-    const userId = session?.user?.id;
-    if(!userId){
-        return NextResponse.json(
-            { error: "Unauthorized" },
-            { status: 401 }
-        );
-    }else{
-        console.log(userId);   
-    }
+  const session = await getServerSession(authOptions);
+  console.log(session);
+  const userId = session?.user?.id;
+  const userEmail = session?.user?.email;
+  if (!userId) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  } else {
+    console.log(userId);
+  }
   try {
     const { code, language_id, questionId } = await req.json();
 
@@ -46,12 +45,17 @@ export async function POST(req: NextRequest) {
         input: test.input,
         expected_output: expected,
         actual_output: actual,
-        status: passed ? "✅ Passed" : "❌ Failed",
+        status: passed ? "Passed" : "Failed",
       });
     }
 
-    const allPassed = results.every((r) => r.status === "✅ Passed");
-
+    const allPassed = results.every((r) => r.status === "Passed");
+    if (allPassed && userEmail) {
+      await User.findOneAndUpdate(
+        { email: userEmail },
+        { $addToSet: { solvedQuestions: question._id } }
+      );
+    }
     await Submission.create({
       question_id: question._id,
       user_id: userId,

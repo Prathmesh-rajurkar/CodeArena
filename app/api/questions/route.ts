@@ -4,12 +4,21 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   await dbConnect();
+
+  const { searchParams } = new URL(req.url);
+  const difficulty = searchParams.get("difficulty"); // 'easy', 'medium', 'hard', or null
+
+  const query: any = {};
+  if (difficulty && ["easy", "medium", "hard"].includes(difficulty)) {
+    query.difficulty = difficulty;
+  }
+
   try {
-    const questions = await Question.find({}).sort({ createdAt: -1 });
+    const questions = await Question.find(query, "title slug difficulty").sort({ createdAt: -1 });
     return NextResponse.json(questions);
   } catch (error) {
-    console.log("Error fetching questions:", error);
-    return new Response("Internal Server Error", { status: 500 });
+    console.error("Error fetching questions:", error);
+    return NextResponse.json({ error: "Failed to fetch questions" }, { status: 500 });
   }
 }
 
