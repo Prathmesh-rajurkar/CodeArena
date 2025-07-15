@@ -7,13 +7,13 @@ import Navbars from "@/components/Navbar";
 import { useState } from "react";
 
 export default function Home() {
-  
-  
   return (
     <div className="bg-black text-white min-h-screen">
-      <Navbars/>
-      <HeroSection/>
-      <ContentSection/>
+      <div className="bg-black">
+        <Navbars />
+        <HeroSection />
+      </div>
+      <ContentSection />
     </div>
   );
 }

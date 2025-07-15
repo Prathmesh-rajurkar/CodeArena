@@ -120,12 +120,10 @@ const ContentSection = () => {
 
                 {/* Play button */}
                 <div className="relative z-10 group cursor-pointer">
-                  <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-white bg-opacity-20 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-white border-opacity-30 group-hover:bg-opacity-30 transition-all duration-300 group-hover:scale-110">
-                    <div className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-white rounded-full flex items-center justify-center group-hover:bg-cyan-400 transition-all duration-300">
-                      <svg className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-gray-800 ml-1" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M8 5v10l8-5-8-5z"/>
-                      </svg>
-                    </div>
+                  <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-white rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-all duration-300">
+                    <svg className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-blue-600 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
                   </div>
                 </div>
 
