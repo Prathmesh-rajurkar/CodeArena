@@ -68,7 +68,7 @@ export const Navbar = ({ children, className }: NavbarProps) => {
     <motion.div
       ref={ref}
       // Transparent by default, black background with white text when scrolled
-      className={cn("fixed inset-x-0 top-0 z-40 w-full bg-transparent", visible && "bg-black text-white", className)}
+      className={cn("fixed top-0 left-0 right-0 z-50 w-full bg-transparent", visible && "text-white", className)}
     >
       {React.Children.map(children, (child) =>
         React.isValidElement(child)

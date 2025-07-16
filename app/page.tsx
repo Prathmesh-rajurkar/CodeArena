@@ -9,7 +9,7 @@ import { useState } from "react";
 export default function Home() {
   return (
     <div className="bg-black text-white min-h-screen">
-      <div className="bg-black">
+      <div className="pt-[80px]">
         <Navbars />
         <HeroSection />
       </div>

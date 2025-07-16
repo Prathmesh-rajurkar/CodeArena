@@ -12,6 +12,8 @@ export interface IUser {
   streak?: number;
   maxStreak?: number;
   lastSolved?: Date;
+  followers?: mongoose.Types.ObjectId[];
+  following?: mongoose.Types.ObjectId[];
 }
 
 const userSchema = new Schema<IUser>(
@@ -25,6 +27,8 @@ const userSchema = new Schema<IUser>(
     streak: { type: Number, default: 0 },
     maxStreak: { type: Number, default: 0 },
     lastSolved: { type: Date, default: null },
+    followers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    following: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   },
   {
     timestamps: true,
