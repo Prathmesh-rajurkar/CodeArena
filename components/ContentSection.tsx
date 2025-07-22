@@ -1,42 +1,57 @@
-import React from 'react';
-import { Code, Trophy, Users, TrendingUp, Lightbulb, Edit3 } from 'lucide-react';
+import React from "react";
+import {
+  Code,
+  Trophy,
+  Users,
+  TrendingUp,
+  Lightbulb,
+  Edit3,
+} from "lucide-react";
+import TestimonialCarousel from "./TestimonialCarousel";
 
 const ContentSection = () => {
   const features = [
     {
       icon: <Code className="w-8 h-8 text-cyan-400" />,
       title: "Vast Problem Library",
-      description: "Access thousands of diverse coding problems, from beginner-friendly to advanced algorithmic challenges."
+      description:
+        "Access thousands of diverse coding problems, from beginner-friendly to advanced algorithmic challenges.",
     },
     {
       icon: <Trophy className="w-8 h-8 text-cyan-400" />,
       title: "Exciting Contests",
-      description: "Participate in daily, weekly, and monthly contests to test your skills under pressure and win prizes."
+      description:
+        "Participate in daily, weekly, and monthly contests to test your skills under pressure and win prizes.",
     },
     {
       icon: <Users className="w-8 h-8 text-cyan-400" />,
       title: "Thriving Community",
-      description: "Connect with fellow coders, share solutions, discuss strategies, and learn from the best in the community."
+      description:
+        "Connect with fellow coders, share solutions, discuss strategies, and learn from the best in the community.",
     },
     {
       icon: <TrendingUp className="w-8 h-8 text-cyan-400" />,
       title: "Detailed Progress Tracking",
-      description: "Monitor your performance with insightful analytics, track your progress, and identify areas for improvement."
+      description:
+        "Monitor your performance with insightful analytics, track your progress, and identify areas for improvement.",
     },
     {
       icon: <Lightbulb className="w-8 h-8 text-cyan-400" />,
       title: "Comprehensive Tutorials",
-      description: "Learn new algorithms and data structures with our curated tutorials and example solutions."
+      description:
+        "Learn new algorithms and data structures with our curated tutorials and example solutions.",
     },
     {
       icon: <Edit3 className="w-8 h-8 text-cyan-400" />,
       title: "Powerful Code Editor",
-      description: "Utilize an integrated, customizable code editor with syntax highlighting and multiple language support."
-    }
+      description:
+        "Utilize an integrated, customizable code editor with syntax highlighting and multiple language support.",
+    },
   ];
 
   return (
     <div className="bg-black text-white min-h-screen py-16 px-4 mt-20">
+      {/* Unleash you coding potential */}
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-16">
@@ -44,8 +59,8 @@ const ContentSection = () => {
             Unleash Your Coding Potential
           </h1>
           <p className="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-            CodeArena provides a comprehensive platform for competitive programming, fostering 
-            skill development and community engagement.
+            CodeArena provides a comprehensive platform for competitive
+            programming, fostering skill development and community engagement.
           </p>
         </div>
 
@@ -76,6 +91,7 @@ const ContentSection = () => {
           </div>
         </div>
       </div>
+      {/* How it works */}
       <div className="bg-black text-white py-16 px-4">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
@@ -84,8 +100,8 @@ const ContentSection = () => {
               How It Works: Your Journey to Coding Mastery
             </h2>
             <p className="text-gray-400 text-base md:text-lg lg:text-xl max-w-4xl mx-auto leading-relaxed">
-              CodeCompete simplifies competitive programming into a seamless and rewarding 
-              experience. Here's how you can get started.
+              CodeCompete simplifies competitive programming into a seamless and
+              rewarding experience. Here's how you can get started.
             </p>
           </div>
 
@@ -101,7 +117,12 @@ const ContentSection = () => {
 
               {/* Curved path illustration */}
               <div className="relative h-64 md:h-80 lg:h-96 flex items-center justify-center">
-                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg
+                  className="absolute inset-0 w-full h-full"
+                  viewBox="0 0 800 400"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   <path
                     d="M100 350 Q200 200 400 250 Q600 300 700 150"
                     stroke="url(#pathGradient)"
@@ -110,7 +131,13 @@ const ContentSection = () => {
                     opacity="0.6"
                   />
                   <defs>
-                    <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <linearGradient
+                      id="pathGradient"
+                      x1="0%"
+                      y1="0%"
+                      x2="100%"
+                      y2="0%"
+                    >
                       <stop offset="0%" stopColor="#60A5FA" />
                       <stop offset="50%" stopColor="#A855F7" />
                       <stop offset="100%" stopColor="#06B6D4" />
@@ -121,8 +148,12 @@ const ContentSection = () => {
                 {/* Play button */}
                 <div className="relative z-10 group cursor-pointer">
                   <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-white rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-all duration-300">
-                    <svg className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-blue-600 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z"/>
+                    <svg
+                      className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-blue-600 ml-0.5"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M8 5v14l11-7z" />
                     </svg>
                   </div>
                 </div>
@@ -139,8 +170,14 @@ const ContentSection = () => {
           </div>
         </div>
       </div>
+      {/* Testimonial */}
+      <div className="text-center mb-12 max-w-7xl mx-auto">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+          What Our Users Say
+        </h2>
+        <TestimonialCarousel />
+      </div>
     </div>
-    
   );
 };
 
