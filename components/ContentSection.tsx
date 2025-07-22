@@ -8,6 +8,7 @@ import {
   Edit3,
 } from "lucide-react";
 import TestimonialCarousel from "./TestimonialCarousel";
+import Footer from "./Footer";
 
 const ContentSection = () => {
   const features = [
@@ -176,6 +177,10 @@ const ContentSection = () => {
           What Our Users Say
         </h2>
         <TestimonialCarousel />
+      </div>
+      {/* Footer */}
+      <div className="text-center mb-12 max-w-7xl mx-auto">
+        <Footer/>
       </div>
     </div>
   );

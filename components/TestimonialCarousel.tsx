@@ -53,7 +53,7 @@ const testimonials = [
   },
 ]
 
-export default function TestimonialCarousel() {
+export default function InfiniteTestimonialCarousel() {
   const scrollRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -61,18 +61,14 @@ export default function TestimonialCarousel() {
     if (!scrollContainer) return
 
     let animationId: number
-    let scrollPosition = 0
-    const scrollSpeed = 0.5 // pixels per frame
+    const scrollSpeed = 1 // pixels per frame
 
     const animate = () => {
-      scrollPosition += scrollSpeed
-
-      // Reset position when we've scrolled past the first set of testimonials
-      if (scrollPosition >= scrollContainer.scrollWidth / 2) {
-        scrollPosition = 0
+      if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth / 2) {
+        scrollContainer.scrollLeft = 0
+      } else {
+        scrollContainer.scrollLeft += scrollSpeed
       }
-
-      scrollContainer.scrollLeft = scrollPosition
       animationId = requestAnimationFrame(animate)
     }
 
@@ -97,55 +93,60 @@ export default function TestimonialCarousel() {
     }
   }, [])
 
-  // Duplicate testimonials for infinite effect
-  const duplicatedTestimonials = [...testimonials, ...testimonials]
+  // Triple the testimonials for smoother infinite effect
+  const infiniteTestimonials = [...testimonials, ...testimonials, ...testimonials]
 
   return (
-    <div className="bg-black py-16 px-4 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <div className="bg-black py-16 overflow-hidden">
+      <div className="max-w-full">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 px-4">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-2">What Our Users Say</h2>
         </div>
 
         {/* Infinite Scrolling Container */}
-        <div
-          ref={scrollRef}
-          className="flex gap-6 overflow-hidden"
-          style={{
-            scrollbarWidth: "none",
-            msOverflowStyle: "none",
-          }}
-        >
-          {duplicatedTestimonials.map((testimonial, index) => (
-            <div key={`${testimonial.id}-${index}`} className="flex-shrink-0 w-80 md:w-96">
-              <div className="bg-gray-900 rounded-xl p-6 h-full border border-gray-800">
-                {/* Quote */}
-                <blockquote className="text-gray-100 text-lg leading-relaxed mb-6">"{testimonial.quote}"</blockquote>
+        <div className="relative">
+          <div
+            ref={scrollRef}
+            className="flex gap-6 overflow-x-hidden pl-6"
+            style={{
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            }}
+          >
+            {infiniteTestimonials.map((testimonial, index) => (
+              <div
+                key={`${testimonial.id}-${Math.floor(index / testimonials.length)}-${index}`}
+                className="flex-shrink-0 w-80"
+              >
+                <div className="bg-gray-900 rounded-xl p-6 h-full border border-gray-800">
+                  {/* Quote */}
+                  <blockquote className="text-gray-100 text-lg leading-relaxed mb-6 min-h-[120px]">
+                    "{testimonial.quote}"
+                  </blockquote>
 
-                {/* User Info */}
-                <div className="flex items-center gap-3">
-                  <Image
-                    src={testimonial.avatar || "/placeholder.svg"}
-                    alt={testimonial.name}
-                    width={48}
-                    height={48}
-                    className="rounded-full border-2 border-gray-700"
-                  />
-                  <div>
-                    <div className="font-semibold text-cyan-400 text-lg">{testimonial.name}</div>
-                    <div className="text-gray-400 text-sm">{testimonial.title}</div>
+                  {/* User Info */}
+                  <div className="flex items-center gap-3">
+                    <Image
+                      src={testimonial.avatar || "/placeholder.svg"}
+                      alt={testimonial.name}
+                      width={48}
+                      height={48}
+                      className="rounded-full border-2 border-gray-700"
+                    />
+                    <div>
+                      <div className="font-semibold text-cyan-400 text-lg">{testimonial.name}</div>
+                      <div className="text-gray-400 text-sm">{testimonial.title}</div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* Gradient Overlays for smooth edges */}
-        <div className="relative -mt-64 pointer-events-none">
-          <div className="absolute left-0 top-0 w-32 h-64 bg-gradient-to-r from-black to-transparent z-10" />
-          <div className="absolute right-0 top-0 w-32 h-64 bg-gradient-to-l from-black to-transparent z-10" />
+          {/* Gradient Overlays */}
+          <div className="absolute left-0 top-0 w-20 h-full bg-gradient-to-r from-black via-black/80 to-transparent pointer-events-none z-10" />
+          <div className="absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-black via-black/80 to-transparent pointer-events-none z-10" />
         </div>
       </div>
 
