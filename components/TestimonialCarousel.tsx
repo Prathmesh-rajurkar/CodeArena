@@ -9,7 +9,7 @@ const testimonials = [
     quote: "The problem variety and community support are unparalleled! I've improved my coding skills tremendously.",
     name: "Bob Williams",
     title: "Competitive Programmer",
-    avatar: "/placeholder.svg?height=48&width=48&text=BW",
+    avatar: "https://images.pexels.com/photos/2380794/pexels-photo-2380794.jpeg",
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const testimonials = [
       "The contests on CodeCompete are incredibly well-structured and challenging. Perfect for pushing your limits.",
     name: "Sarah Chen",
     title: "Software Engineer",
-    avatar: "/placeholder.svg?height=48&width=48&text=SC",
+    avatar: "https://images.pexels.com/photos/9534338/pexels-photo-9534338.jpeg",
   },
   {
     id: 3,
@@ -25,7 +25,7 @@ const testimonials = [
       "Amazing platform for competitive programming. The real-time rankings and detailed solutions help me learn faster.",
     name: "Alex Rodriguez",
     title: "Computer Science Student",
-    avatar: "/placeholder.svg?height=48&width=48&text=AR",
+    avatar: "https://images.pexels.com/photos/27897903/pexels-photo-27897903.jpeg",
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ const testimonials = [
       "The quality of problems and the active community make this the best platform for competitive programming practice.",
     name: "Emily Johnson",
     title: "Algorithm Specialist",
-    avatar: "/placeholder.svg?height=48&width=48&text=EJ",
+    avatar: "https://images.pexels.com/photos/12453979/pexels-photo-12453979.jpeg",
   },
   {
     id: 5,
@@ -41,7 +41,7 @@ const testimonials = [
       "I've participated in numerous contests here. The platform's reliability and problem diversity are outstanding.",
     name: "Michael Park",
     title: "Senior Developer",
-    avatar: "/placeholder.svg?height=48&width=48&text=MP",
+    avatar: "https://images.pexels.com/photos/7562076/pexels-photo-7562076.jpeg",
   },
   {
     id: 6,
@@ -49,7 +49,7 @@ const testimonials = [
       "CodeCompete has helped me prepare for technical interviews. The problem sets are comprehensive and well-curated.",
     name: "Lisa Zhang",
     title: "Tech Lead",
-    avatar: "/placeholder.svg?height=48&width=48&text=LZ",
+    avatar: "https://images.pexels.com/photos/2693814/pexels-photo-2693814.jpeg",
   },
 ]
 

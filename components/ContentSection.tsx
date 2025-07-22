@@ -116,53 +116,29 @@ const ContentSection = () => {
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 md:w-60 md:h-60 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse delay-500"></div>
               </div>
 
-              {/* Curved path illustration */}
+              {/* Video Embed */}
               <div className="relative h-64 md:h-80 lg:h-96 flex items-center justify-center">
-                <svg
-                  className="absolute inset-0 w-full h-full"
-                  viewBox="0 0 800 400"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+                <video
+                  className="rounded-xl w-full h-full object-cover shadow-xl"
+                  // controls
+                  autoPlay
+                  loop
+                  muted
+                  // playsInline
+                  // disablePictureInPicture
+                  // controlsList="nodownload nofullscreen noremoteplayback"
+                  // onVolumeChange={(e) => {
+                  //   const video = e.currentTarget;
+                  //   video.muted = true; // Force keep it muted
+                  //   video.volume = 0;
+                  // }}
                 >
-                  <path
-                    d="M100 350 Q200 200 400 250 Q600 300 700 150"
-                    stroke="url(#pathGradient)"
-                    strokeWidth="8"
-                    fill="none"
-                    opacity="0.6"
+                  <source
+                    src="/Video_Link_Generated_Successfully.mp4"
+                    type="video/mp4"
                   />
-                  <defs>
-                    <linearGradient
-                      id="pathGradient"
-                      x1="0%"
-                      y1="0%"
-                      x2="100%"
-                      y2="0%"
-                    >
-                      <stop offset="0%" stopColor="#60A5FA" />
-                      <stop offset="50%" stopColor="#A855F7" />
-                      <stop offset="100%" stopColor="#06B6D4" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-
-                {/* Play button */}
-                <div className="relative z-10 group cursor-pointer">
-                  <div className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-white rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-all duration-300">
-                    <svg
-                      className="w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-blue-600 ml-0.5"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Floating elements */}
-                <div className="absolute top-8 left-8 w-3 h-3 md:w-4 md:h-4 bg-cyan-400 rounded-full animate-bounce"></div>
-                <div className="absolute bottom-8 right-8 w-2 h-2 md:w-3 md:h-3 bg-purple-400 rounded-full animate-bounce delay-300"></div>
-                <div className="absolute top-12 right-12 w-2 h-2 md:w-3 md:h-3 bg-blue-400 rounded-full animate-bounce delay-700"></div>
+                  Your browser does not support the video tag.
+                </video>
               </div>
             </div>
 
@@ -173,14 +149,11 @@ const ContentSection = () => {
       </div>
       {/* Testimonial */}
       <div className="text-center mb-12 max-w-7xl mx-auto">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-          What Our Users Say
-        </h2>
         <TestimonialCarousel />
       </div>
       {/* Footer */}
       <div className="text-center mb-12 max-w-7xl mx-auto">
-        <Footer/>
+        <Footer />
       </div>
     </div>
   );
