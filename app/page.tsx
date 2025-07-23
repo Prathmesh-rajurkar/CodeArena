@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className="bg-black text-white min-h-screen">
       <div className="pt-[80px]">
-        <Navbars />
+        {/* <Navbars /> */}
         <HeroSection />
       </div>
       <ContentSection />

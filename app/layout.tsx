@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Navbar } from "@/components/ui/resizable-navbar";
+import Navbars from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "CodeArena",
@@ -14,6 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Navbars/>
         {children}
       </body>
     </html>
