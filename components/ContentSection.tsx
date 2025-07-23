@@ -152,9 +152,7 @@ const ContentSection = () => {
         <TestimonialCarousel />
       </div>
       {/* Footer */}
-      <div className="text-center mb-12 max-w-7xl mx-auto">
-        <Footer />
-      </div>
+      
     </div>
   );
 };

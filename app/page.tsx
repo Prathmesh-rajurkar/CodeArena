@@ -1,6 +1,7 @@
 "use client";
 
 import ContentSection from "@/components/ContentSection";
+import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import Navbars from "@/components/Navbar";
 
@@ -14,6 +15,7 @@ export default function Home() {
         <HeroSection />
       </div>
       <ContentSection />
+      
     </div>
   );
 }

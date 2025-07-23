@@ -6,7 +6,7 @@ import { FaTwitter, FaLinkedin, FaYoutube, FaGithub } from 'react-icons/fa';
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white pt-20 px-4">
+    <footer className="bg-black text-white pt-20 px-4 text-center  max-w-7xl mx-auto">
       {/* Subscription Section */}
       <div className="max-w-6xl mx-auto bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Left: Text */}

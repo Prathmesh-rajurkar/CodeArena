@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Navbar } from "@/components/ui/resizable-navbar";
 import Navbars from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "CodeArena",
@@ -15,9 +16,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <Navbars/>
+      <body className="bg-black text-white min-h-screen">
+        <Navbars />
         {children}
+        {/* <div className="text-center  max-w-7xl mx-auto"> */}
+          <Footer />
+        {/* </div> */}
       </body>
     </html>
   );
