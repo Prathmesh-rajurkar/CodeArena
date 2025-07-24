@@ -22,7 +22,7 @@ function Navbars() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  setIsAuthenticated(false); // Set to false for testing, change as needed
+  // setIsAuthenticated(false); // Set to false for testing, change as needed
   const navItems = [
     { name: "Home", link: "/" },
     { name: "Practice", link: "/questions" },
@@ -67,7 +67,7 @@ function Navbars() {
                 </NavbarButton>
               </div>
             ) : (
-              <Avatar>
+              <Avatar onClick={()=>(setIsAuthenticated(false))} className="cursor-pointer">
                 <AvatarImage
                   src="https://github.com/shadcn.png"
                   alt="@shadcn"
