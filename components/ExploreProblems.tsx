@@ -1,28 +1,27 @@
 import React from "react";
 import { Tabs } from "./ui/tabs";
-import { title } from "process";
 
 function ExploreProblems() {
   const tabs = [
     {
       title: "All Problems",
       value: "all",
-      content: <div></div>,
+      content: <div>all problems</div>,
     },
     {
       title: "Easy",
       value: "easy",
-      content: <div></div>,
+      content: <div>easy problems</div>,
     },
     {
       title: "Medium",
       value: "medium",
-      content: <div></div>,
+      content: <div>medium problems</div>,
     },
     {
       title: "Hard",
       value: "hard",
-      content: <div></div>,
+      content: <div>hard problems</div>,
     },
   ];
   return (
@@ -33,8 +32,8 @@ function ExploreProblems() {
         </h1>
         <p className="text-gray-500 lg:p-5 mb-5">
           Dive into a vast collection of coding problems designed to challenge
-          and enhance your skills. Whether you're a beginner or an experienced
-          coder, you'll find problems that suit your level and help you grow.
+          and enhance your skills. Whether you&apos;re a beginner or an experienced
+          coder, you&apos;ll find problems that suit your level and help you grow.
         </p>
       </div>
       <div className="max-w-7xl mx-auto px-4">

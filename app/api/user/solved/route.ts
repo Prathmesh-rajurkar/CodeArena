@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { dbConnect } from "@/lib/db";
 import User from "@/models/User";
-import Question from "@/models/Question";
+// import Question from "@/models/Question";
 import { NextResponse } from "next/server";
 
 export async function GET() {

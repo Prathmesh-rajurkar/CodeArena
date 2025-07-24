@@ -122,7 +122,7 @@ export default function InfiniteTestimonialCarousel() {
                 <div className="bg-gray-900 rounded-xl p-6 h-full border border-gray-800">
                   {/* Quote */}
                   <blockquote className="text-gray-100 text-lg leading-relaxed mb-6 min-h-[120px]">
-                    "{testimonial.quote}"
+                    &quot;{testimonial.quote}&quot;
                   </blockquote>
 
                   {/* User Info */}

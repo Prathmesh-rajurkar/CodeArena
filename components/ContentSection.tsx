@@ -8,7 +8,7 @@ import {
   Edit3,
 } from "lucide-react";
 import TestimonialCarousel from "./TestimonialCarousel";
-import Footer from "./Footer";
+// import Footer from "./Footer";
 
 const ContentSection = () => {
   const features = [
@@ -102,7 +102,7 @@ const ContentSection = () => {
             </h2>
             <p className="text-gray-400 text-base md:text-lg lg:text-xl max-w-4xl mx-auto leading-relaxed">
               CodeCompete simplifies competitive programming into a seamless and
-              rewarding experience. Here's how you can get started.
+              rewarding experience. Here&apos;s how you can get started.
             </p>
           </div>
 

@@ -5,12 +5,11 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import {
   Navbar,
   NavBody,
-  NavItems,
   MobileNav,
   NavbarLogo,
   NavbarButton,
@@ -23,7 +22,7 @@ function Navbars() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-
+  setIsAuthenticated(false); // Set to false for testing, change as needed
   const navItems = [
     { name: "Home", link: "/" },
     { name: "Practice", link: "/questions" },

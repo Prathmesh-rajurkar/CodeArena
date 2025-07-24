@@ -8,10 +8,10 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const difficulty = searchParams.get("difficulty"); // 'easy', 'medium', 'hard', or null
 
-  const query: any = {};
-  if (difficulty && ["easy", "medium", "hard"].includes(difficulty)) {
-    query.difficulty = difficulty;
-  }
+  const query: { difficulty?: string } = {};
+if (difficulty && ["easy", "medium", "hard"].includes(difficulty)) {
+  query.difficulty = difficulty;
+}
 
   try {
     const questions = await Question.find(query, "title slug difficulty").sort({ createdAt: -1 });

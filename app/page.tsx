@@ -1,11 +1,11 @@
 "use client";
 
 import ContentSection from "@/components/ContentSection";
-import Footer from "@/components/Footer";
+// import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
-import Navbars from "@/components/Navbar";
+// import Navbars from "@/components/Navbar";
 
-import { useState } from "react";
+// import { useState } from "react";
 
 export default function Home() {
   return (
