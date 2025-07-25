@@ -11,7 +11,9 @@
   "dependencies": {
     "@heroui/navbar": "^2.2.20",
     "@heroui/pagination": "^2.2.21",
+    "@heroui/react": "^2.8.1",
     "@heroui/system": "^2.4.19",
+    "@heroui/tabs": "^2.2.20",
     "@heroui/theme": "^2.4.19",
     "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-slot": "^1.2.3",
@@ -22,7 +24,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",
-    "framer-motion": "^12.23.2",
+    "framer-motion": "^12.23.9",
     "icons-react": "^3.7.1",
     "keen-slider": "^6.8.6",
     "lucide-react": "^0.525.0",
