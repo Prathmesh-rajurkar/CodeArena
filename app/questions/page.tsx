@@ -1,4 +1,5 @@
 import ExploreProblems from "@/components/ExploreProblems";
+import Footer from "@/components/Footer";
 import React from "react";
 
 function page() {
@@ -7,6 +8,7 @@ function page() {
       <div className="pt-[80px]">
         <ExploreProblems />
       </div>
+      <Footer/>
     </div>
   );
 }
