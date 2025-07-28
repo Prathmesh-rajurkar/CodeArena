@@ -2,6 +2,7 @@
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import QuestionsList from "./QuestionsList";
+import QuestionCard from "./QuestionCard";
 
 function ExploreProblems() {
   return (
@@ -18,18 +19,27 @@ function ExploreProblems() {
         </p>
       </div>
       <div className="max-w-7xl mx-auto px-4">
-        <Tabs className="w-full">
+        <Tabs defaultValue="all" className="w-full">
           <TabsList>
             <TabsTrigger value="all">All Problems</TabsTrigger>
             <TabsTrigger value="easy">Easy</TabsTrigger>
             <TabsTrigger value="medium">Medium</TabsTrigger>
             <TabsTrigger value="hard">Hard</TabsTrigger>
           </TabsList>
-          
+
+          <TabsContent value="all">
+            <QuestionsList difficulty={'all'} />
+          </TabsContent>
+          <TabsContent value="easy">
+            <QuestionsList difficulty={'easy'} />
+          </TabsContent>
+          <TabsContent value="medium">
+            <QuestionsList difficulty={'medium'} />
+          </TabsContent>
+          <TabsContent value="hard">
+            <QuestionsList difficulty={'hard'} />
+          </TabsContent>
         </Tabs>
-      </div>
-      <div className="max-w-7xl mx-auto px-4 mt-10">
-        <QuestionsList />
       </div>
     </div>
   );
