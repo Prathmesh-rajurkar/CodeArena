@@ -19,25 +19,40 @@ function ExploreProblems() {
         </p>
       </div>
       <div className="max-w-7xl mx-auto px-4">
-        <Tabs defaultValue="all" className="w-full">
-          <TabsList>
+        <Tabs defaultValue="all" className="w-full z-50">
+          <TabsList className="z-50">
             <TabsTrigger value="all">All Problems</TabsTrigger>
-            <TabsTrigger value="easy">Easy</TabsTrigger>
-            <TabsTrigger value="medium">Medium</TabsTrigger>
-            <TabsTrigger value="hard">Hard</TabsTrigger>
+            <TabsTrigger
+              value="easy"
+              className="data-[state=active]:bg-green-500 data-[state=active]:text-black"
+            >
+              Easy
+            </TabsTrigger>
+            <TabsTrigger
+              value="medium"
+              className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black"
+            >
+              Medium
+            </TabsTrigger>
+            <TabsTrigger
+              value="hard"
+              className="data-[state=active]:bg-red-500 data-[state=active]:text-black"
+            >
+              Hard
+            </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="all">
-            <QuestionsList difficulty={'all'} />
+          <TabsContent value="all" className="z-50">
+            <QuestionsList difficulty={"all"} />
           </TabsContent>
-          <TabsContent value="easy">
-            <QuestionsList difficulty={'easy'} />
+          <TabsContent value="easy" className="z-50">
+            <QuestionsList difficulty={"easy"} />
           </TabsContent>
-          <TabsContent value="medium">
-            <QuestionsList difficulty={'medium'} />
+          <TabsContent value="medium" className="z-50">
+            <QuestionsList difficulty={"medium"} />
           </TabsContent>
-          <TabsContent value="hard">
-            <QuestionsList difficulty={'hard'} />
+          <TabsContent value="hard" className="z-50">
+            <QuestionsList difficulty={"hard"} />
           </TabsContent>
         </Tabs>
       </div>

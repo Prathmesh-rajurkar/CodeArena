@@ -14,10 +14,10 @@ function HeroSection() {
         leaderboard. Sharpen your skills and achieve coding excellence.
       </p>
       <div className="flex flex-col lg:flex-row gap-4 ">
-        <Button className="bg-cyan-600 text-white px-6 py-3 rounded-md hover:bg-cyan-700 transition-colors ">
+        <Button className="bg-cyan-600 text-white px-6 py-3 z-50  rounded-md hover:bg-cyan-700 transition-colors ">
           <Link href="/questions">Start Coding Now</Link>
         </Button>
-        <Button className="text-white border border-white px-6 py-3 rounded-md bg-black transition-colors">
+        <Button className="text-white border z-50 border-white px-6 py-3 rounded-md bg-black transition-colors">
           <Link href="/questions">Learn More</Link>
         </Button>
       </div>

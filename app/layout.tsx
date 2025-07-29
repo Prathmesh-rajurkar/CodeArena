@@ -3,6 +3,8 @@ import "./globals.css";
 // import { Navbar } from "@/components/ui/resizable-navbar";
 import Navbars from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { ShootingStars } from "@/components/ui/shooting-stars";
+import { StarsBackground } from "@/components/ui/stars-background";
 // import { Providers } from "./providers";
 
 export const metadata: Metadata = {
@@ -21,6 +23,8 @@ export default function RootLayout({
         <Navbars />
         <main className="flex-1">{children}</main>
         {/* <Footer /> */}
+        <ShootingStars className=""/>
+        <StarsBackground className=""/>
       </body>
     </html>
   );
