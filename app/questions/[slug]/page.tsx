@@ -6,29 +6,36 @@ import {
 } from "@/components/ui/resizable";
 import QuestionInfo from "@/components/QuestionInfo";
 import CodeEditor from "@/components/CodeEditor";
+import TestCaseList from "@/components/TestCaseList";
 function page() {
+  const testCases = [
+    { input: 'nums = [2,7,11,15], target = 9', expectedOutput: '[0,1]' },
+    { input: 'nums = [3,2,4], target = 6', expectedOutput: '[1,2]' },
+  ];
   return (
     <div className="w-screen h-screen pt-18">
       <ResizablePanelGroup direction="horizontal" className="rounded-lg z-50">
         <ResizablePanel defaultSize={50} className="m-2">
-          <div className="flex items-center justify-center z-50 flex-1 h-full overflow-y-auto">
+          <div className="flex justify-center z-50 flex-1 h-full overflow-y-auto">
             {/* <span className="font-semibold">One</span> */}
-            <QuestionInfo/>
+            <QuestionInfo />
           </div>
         </ResizablePanel>
         <ResizableHandle withHandle className="bg-gray-900" />
         <ResizablePanel defaultSize={50} className="m-2">
           <ResizablePanelGroup direction="vertical">
             <ResizablePanel defaultSize={60} className="z-50">
-              
-                {/* <span className="font-semibold">Two</span> */}
-                <CodeEditor/>
-              
+              {/* <span className="font-semibold">Two</span> */}
+              <CodeEditor />
             </ResizablePanel>
             <ResizableHandle withHandle className="bg-gray-900" />
             <ResizablePanel defaultSize={40} className="m-2">
-              <div className="flex h-full items-center justify-center p-6">
-                <span className="font-semibold">Three</span>
+              <div className="flex h-full items-center justify-center p-4">
+                {/* <span className="font-semibold">Three</span> */}
+                <h1 className="text-xl font-bold text-white mb-4">
+                  Test Cases
+                </h1>
+                <TestCaseList testCases={testCases} />
               </div>
             </ResizablePanel>
           </ResizablePanelGroup>
