@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/resizable-navbar";
 
 function Navbars() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   // setIsAuthenticated(false); // Set to false for testing, change as needed
@@ -30,7 +30,7 @@ function Navbars() {
   ];
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full z-50">
       <Navbar className="dark">
         {/* Desktop Navigation */}
         <NavBody>

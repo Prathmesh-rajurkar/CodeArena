@@ -11,7 +11,7 @@ interface TestCaseListProps {
 
 const TestCaseList: React.FC<TestCaseListProps> = ({ testCases }) => {
   return (
-    <div className="max-h-96 overflow-y-auto space-y-4 p-4 rounded-lg bg-gray-900 border border-gray-700">
+    <div className="max-h-96 w-full space-y-4 p-4 rounded bg-black border border-gray-800">
       {testCases.map((testCase, index) => (
         <div
           key={index}
