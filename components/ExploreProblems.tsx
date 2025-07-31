@@ -2,7 +2,7 @@
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import QuestionsList from "./QuestionsList";
-import QuestionCard from "./QuestionCard";
+// import QuestionCard from "./QuestionCard";
 
 function ExploreProblems() {
   return (
@@ -21,7 +21,12 @@ function ExploreProblems() {
       <div className="max-w-7xl mx-auto px-4">
         <Tabs defaultValue="all" className="w-full z-50">
           <TabsList className="z-50">
-            <TabsTrigger value="all">All Problems</TabsTrigger>
+            <TabsTrigger
+              value="all"
+              className="data-[state=active]:bg-cyan-500 data-[state=active]:text-black"
+            >
+              All Problems
+            </TabsTrigger>
             <TabsTrigger
               value="easy"
               className="data-[state=active]:bg-green-500 data-[state=active]:text-black"

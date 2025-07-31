@@ -56,7 +56,7 @@ function TabsTrigger({
         "data-[state=active]:shadow-sm data-[state=active]:text-black",
         "data-[state=active]:bg-opacity-100",
         "bg-black text-white hover:bg-[#1e293b]",
-        `data-[state=active]:bg-cyan-500`,
+        `data-[state=active]:${activeColor}`,
         className
       )}
       {...props}

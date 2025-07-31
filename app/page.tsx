@@ -2,7 +2,7 @@
 
 import ContentSection from "@/components/ContentSection";
 import Footer from "@/components/Footer";
-import { ShootingStars } from "@/components/ui/shooting-stars";
+// import { ShootingStars } from "@/components/ui/shooting-stars";
 import HeroSection from "@/components/HeroSection";
 // import Navbars from "@/components/Navbar";
 

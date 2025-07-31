@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Editor from "@monaco-editor/react";
-import { ScrollArea } from "./ui/scroll-area";
+// import { ScrollArea } from "./ui/scroll-area";
 
 interface CodeEditorProps {
   initialLanguage?: string;
