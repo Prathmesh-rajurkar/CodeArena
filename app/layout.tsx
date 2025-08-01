@@ -1,7 +1,7 @@
 'use client';
 
 import "./globals.css";
-import type { Metadata } from "next";
+// import type { Metadata } from "next";
 import Navbars from "@/components/Navbar";
 import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
