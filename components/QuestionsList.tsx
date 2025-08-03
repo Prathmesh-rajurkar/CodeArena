@@ -1,37 +1,39 @@
+import { useEffect, useState } from "react";
 import QuestionCard from "./QuestionCard";
 
-const questions = [
-  {
-    id: "1",
-    title: "Two Sum",
-    difficulty: "Easy",
-    slug: "two-sum",
-    solved: true,
-  },
-  {
-    id: "2",
-    title: "Add Two Numbers",
-    difficulty: "Medium",
-    slug: "add-two-numbers",
-    solved: false,
-  },
-  {
-    id: "3",
-    title: "Median of Two Sorted Arrays",
-    difficulty: "Hard",
-    slug: "median-of-two-sorted-arrays",
-    solved: false,
-  },
-];
-
 export default function QuestionsList({ difficulty }: { difficulty: string }) {
+  const [questions, setQuestions] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch("/api/questions");
+        const data = await res.json();
+        console.log(data)
+        setQuestions(data || []);
+      } catch (err) {
+        setQuestions([]);
+      }
+      setLoading(false);
+    };
+    fetchQuestions();
+  }, []);
+
+  const filtered = questions.filter(
+    (q) => difficulty === "all" || q.difficulty.toLowerCase() === difficulty
+  );
+
   return (
     <div className="w-full max-w-full mx-auto p-4 ">
-      {questions
-        .filter((q) => difficulty === 'all' || q.difficulty.toLowerCase() === difficulty)
-        .map((q) => (
-          <QuestionCard key={q.id} question={q} />
-        ))}
+      {loading ? (
+        <div className="text-center text-gray-400">Loading...</div>
+      ) : filtered.length === 0 ? (
+        <div className="text-center text-gray-400">No questions found.</div>
+      ) : (
+        filtered.map((q) => <QuestionCard key={q.id} question={q} />)
+      )}
     </div>
   );
 }

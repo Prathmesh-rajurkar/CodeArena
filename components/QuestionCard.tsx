@@ -13,9 +13,9 @@ type Question = {
 }
 
 const getDifficultyColor = (difficulty: string) => {
-  if (difficulty === 'Easy') return 'text-green-500'
-  if (difficulty === 'Medium') return 'text-yellow-500'
-  if (difficulty === 'Hard') return 'text-red-500'
+  if (difficulty === 'easy') return 'text-green-500'
+  if (difficulty === 'medium') return 'text-yellow-500'
+  if (difficulty === 'hard') return 'text-red-500'
   return ''
 }
 
