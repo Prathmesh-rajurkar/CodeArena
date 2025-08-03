@@ -1,8 +1,15 @@
 import { useEffect, useState } from "react";
 import QuestionCard from "./QuestionCard";
 
+type Question = {
+  id: string;
+  title: string;
+  slug: string;
+  difficulty: "easy" | "medium" | "hard";
+};
+
 export default function QuestionsList({ difficulty }: { difficulty: string }) {
-  const [questions, setQuestions] = useState<any[]>([]);
+  const [questions, setQuestions] = useState<Question[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -11,9 +18,10 @@ export default function QuestionsList({ difficulty }: { difficulty: string }) {
       try {
         const res = await fetch("/api/questions");
         const data = await res.json();
-        console.log(data)
+        console.log(data);
         setQuestions(data || []);
       } catch (err) {
+        console.error("Error fetching questions:", err);
         setQuestions([]);
       }
       setLoading(false);

@@ -28,6 +28,7 @@ export default function RegisterPage() {
         router.push('/login')
       }
     } catch (err) {
+      console.error('Registration error:', err)
       setError('Something went wrong')
     }
     setLoading(false)

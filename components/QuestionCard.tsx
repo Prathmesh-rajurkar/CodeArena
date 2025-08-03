@@ -1,5 +1,5 @@
 // components/QuestionCard.tsx
-import { CheckCircle2 } from 'lucide-react' // Optional: Use your own SVG
+// import { CheckCircle2 } from 'lucide-react'
 import Link from 'next/link'
 // import { QuestionInterface } from './QuestionsList'
 
@@ -9,7 +9,6 @@ type Question = {
   title: string
   difficulty: string
   slug: string
-  solved: boolean
 }
 
 const getDifficultyColor = (difficulty: string) => {
@@ -29,9 +28,9 @@ export default function QuestionCard({ question }: { question: Question }) {
             {question.difficulty}
           </span>
         </div>
-        {question.solved && (
+        {/* {question.solved && (
           <CheckCircle2 className="text-green-400 w-6 h-6" /> 
-        )}
+        )} */}
       </div>
     </Link>
   )
