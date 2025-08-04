@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 
 type Question = {
-  id: string
+  _id: string
   title: string
   difficulty: string
   slug: string

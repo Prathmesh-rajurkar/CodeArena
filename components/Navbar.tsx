@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
@@ -17,9 +17,10 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
+import { signOut, useSession } from "next-auth/react";
 
 function Navbars() {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   // setIsAuthenticated(false); // Set to false for testing, change as needed
@@ -28,6 +29,16 @@ function Navbars() {
     { name: "Practice", link: "/questions" },
     { name: "Compete", link: "/contest" },
   ];
+  const { data: session } = useSession();
+  const user = session?.user;
+  // console.log(user);
+  useEffect(() => {
+  if (session?.user) {
+    setIsAuthenticated(true);
+  } else {
+    setIsAuthenticated(false);
+  }
+}, [session]);
 
   return (
     <div className="relative w-full z-50">
@@ -67,12 +78,12 @@ function Navbars() {
                 </NavbarButton>
               </div>
             ) : (
-              <Avatar onClick={()=>(setIsAuthenticated(false))} className="cursor-pointer">
+              <Avatar onClick={()=>(signOut({ callbackUrl: "/login" }))} className="cursor-pointer">
                 <AvatarImage
-                  src="https://github.com/shadcn.png"
-                  alt="@shadcn"
+                  src={user?.image || ''}
+                  alt={user?.name || '@user'}
                 />
-                <AvatarFallback>CN</AvatarFallback>
+                <AvatarFallback>{user?.email?.charAt(0).toUpperCase() || "U"}</AvatarFallback>
               </Avatar>
             )}
           </div>
@@ -128,13 +139,13 @@ function Navbars() {
                   </NavbarButton>
                 </div>
               ) : (
-                <Avatar>
-                  <AvatarImage
-                    src="https://github.com/shadcn.png"
-                    alt="@shadcn"
-                  />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
+                <Avatar onClick={()=>(signOut({ callbackUrl: "/login" }))} className="cursor-pointer">
+                <AvatarImage
+                  src={user?.image || ''}
+                  alt={user?.name || '@user'}
+                />
+                <AvatarFallback>{user?.email?.charAt(0).toUpperCase() || "U"}</AvatarFallback>
+              </Avatar>
               )}
             </div>
           </MobileNavMenu>

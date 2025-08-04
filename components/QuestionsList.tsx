@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import QuestionCard from "./QuestionCard";
 
 type Question = {
-  id: string;
+  _id: string;
   title: string;
   slug: string;
   difficulty: "easy" | "medium" | "hard";
@@ -18,7 +18,7 @@ export default function QuestionsList({ difficulty }: { difficulty: string }) {
       try {
         const res = await fetch("/api/questions");
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
         setQuestions(data || []);
       } catch (err) {
         console.error("Error fetching questions:", err);
@@ -40,7 +40,7 @@ export default function QuestionsList({ difficulty }: { difficulty: string }) {
       ) : filtered.length === 0 ? (
         <div className="text-center text-gray-400">No questions found.</div>
       ) : (
-        filtered.map((q) => <QuestionCard key={q.id} question={q} />)
+        filtered.map((q) => <QuestionCard key={q._id} question={q} />)
       )}
     </div>
   );

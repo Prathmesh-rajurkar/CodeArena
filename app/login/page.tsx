@@ -70,7 +70,7 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <button
+        {/* <button
           type="button"
           onClick={() => signIn('google')}
           className="w-full bg-white text-black font-semibold py-3 rounded-md mt-2 flex items-center justify-center gap-2 cursor-pointer hover:bg-gray-300"
@@ -96,7 +96,7 @@ export default function LoginPage() {
             </g>
           </svg>
           Sign in with Google
-        </button>
+        </button> */}
 
         <p className="text-center text-sm text-gray-400">
           Don&apos;t have an account?{' '}

@@ -76,14 +76,14 @@ export default function RegisterPage() {
           </button>
         </form>
 
-        <button
+        {/* <button
           type="button"
           onClick={() => signIn("google")}
           className="w-full bg-white text-black font-semibold py-3 rounded-md mt-2 flex items-center justify-center gap-2"
         >
           <svg width="20" height="20" viewBox="0 0 48 48"><g><path fill="#4285F4" d="M44.5 20H24v8.5h11.7C34.1 33.1 29.6 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c2.7 0 5.2.9 7.2 2.4l6.4-6.4C34.1 5.1 29.3 3 24 3 12.9 3 4 11.9 4 23s8.9 20 20 20c11 0 19.7-8 19.7-20 0-1.3-.1-2.7-.2-4z"/><path fill="#34A853" d="M6.3 14.7l7 5.1C15.1 17.1 19.2 14 24 14c2.7 0 5.2.9 7.2 2.4l6.4-6.4C34.1 5.1 29.3 3 24 3c-7.2 0-13.3 4.1-16.7 10.1z"/><path fill="#FBBC05" d="M24 44c5.6 0 10.1-1.9 13.5-5.1l-6.2-5.1C29.6 36 24 36 24 36c-5.6 0-10.1-1.9-13.5-5.1l6.2-5.1C18.4 33.1 24 36 24 36z"/><path fill="#EA4335" d="M44.5 20H24v8.5h11.7C34.1 33.1 29.6 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c2.7 0 5.2.9 7.2 2.4l6.4-6.4C34.1 5.1 29.3 3 24 3 12.9 3 4 11.9 4 23s8.9 20 20 20c11 0 19.7-8 19.7-20 0-1.3-.1-2.7-.2-4z"/></g></svg>
           Sign in with Google
-        </button>
+        </button> */}
 
         <p className="text-center text-sm text-gray-400">
           Already have an account?{' '}
