@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
@@ -33,12 +33,12 @@ function Navbars() {
   const user = session?.user;
   // console.log(user);
   useEffect(() => {
-  if (session?.user) {
-    setIsAuthenticated(true);
-  } else {
-    setIsAuthenticated(false);
-  }
-}, [session]);
+    if (session?.user) {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  }, [session]);
 
   return (
     <div className="relative w-full z-50">
@@ -78,13 +78,17 @@ function Navbars() {
                 </NavbarButton>
               </div>
             ) : (
-              <Avatar onClick={()=>(signOut({ callbackUrl: "/login" }))} className="cursor-pointer">
-                <AvatarImage
-                  src={user?.image || ''}
-                  alt={user?.name || '@user'}
-                />
-                <AvatarFallback>{user?.email?.charAt(0).toUpperCase() || "U"}</AvatarFallback>
-              </Avatar>
+              <Link href="/profile">
+                <Avatar className="cursor-pointer">
+                  <AvatarImage
+                    src={user?.image || ""}
+                    alt={user?.name || "@user"}
+                  />
+                  <AvatarFallback>
+                    {user?.email?.charAt(0).toUpperCase() || "U"}
+                  </AvatarFallback>
+                </Avatar>
+              </Link>
             )}
           </div>
         </NavBody>
@@ -139,13 +143,17 @@ function Navbars() {
                   </NavbarButton>
                 </div>
               ) : (
-                <Avatar onClick={()=>(signOut({ callbackUrl: "/login" }))} className="cursor-pointer">
-                <AvatarImage
-                  src={user?.image || ''}
-                  alt={user?.name || '@user'}
-                />
-                <AvatarFallback>{user?.email?.charAt(0).toUpperCase() || "U"}</AvatarFallback>
-              </Avatar>
+                <Link href="/profile">
+                  <Avatar className="cursor-pointer">
+                    <AvatarImage
+                      src={user?.image || ""}
+                      alt={user?.name || "@user"}
+                    />
+                    <AvatarFallback>
+                      {user?.email?.charAt(0).toUpperCase() || "U"}
+                    </AvatarFallback>
+                  </Avatar>
+                </Link>
               )}
             </div>
           </MobileNavMenu>
