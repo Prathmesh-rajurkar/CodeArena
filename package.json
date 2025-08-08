@@ -15,6 +15,7 @@
     "@heroui/system": "^2.4.19",
     "@heroui/tabs": "^2.2.20",
     "@heroui/theme": "^2.4.19",
+    "@imagekit/next": "^2.1.2",
     "@monaco-editor/react": "^4.7.0",
     "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-scroll-area": "^1.2.9",

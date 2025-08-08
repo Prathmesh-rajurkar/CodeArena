@@ -46,7 +46,7 @@ export default function ProfilePage() {
     datasets: [
       {
         label: 'Problems Solved',
-        data: [50, 70, 90, 110, 130, 120],
+        data: [5, 7, 9, 11, 13, 12],
         borderColor: '#22d3ee',
         backgroundColor: 'rgba(34, 211, 238, 0.2)',
         tension: 0.4,
