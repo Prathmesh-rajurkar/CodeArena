@@ -4,7 +4,7 @@ import React from 'react'
 
 function page() {
   return (
-    <div className="bg-black text-white min-h-screen z-50">
+    <div className="bg-transparent text-white min-h-screen z-50">
       <div className="pt-[80px] z-50">
         <ProfilePage />
       </div>

@@ -22,9 +22,10 @@ export interface IUser {
 
 const userSchema = new Schema<IUser>(
   {
+    
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    image: String,
+    image: { type: String, default: "" },
     description: { type: String, default: "" },
     // Updated: solvedQuestions contains timestamps for tracking
     solvedQuestions: [

@@ -56,19 +56,19 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-10 text-white space-y-10 z-50">
+    <div className="max-w-7xl mx-auto px-6 py-10 text-white space-y-10 z-60">
       {/* Header Section */}
       <div className="bg-white/5 border border-white/10 p-8 rounded-xl flex flex-col items-center text-center shadow-xl">
         <Avatar className="w-24 h-24 mb-4">
           <AvatarImage src={user?.image || ''} alt={user?.name || 'U'} />
-          <AvatarFallback>{user?.name?.charAt(0).toUpperCase()}</AvatarFallback>
+          <AvatarFallback className='bg-black text-6xl'>{user?.email?.charAt(0).toUpperCase() || "U"}</AvatarFallback>
         </Avatar>
         <h1 className="text-2xl font-bold">{user?.name || 'Username'}</h1>
         <p className="text-gray-400 mt-2 max-w-xl">
           Passionate problem solver and software enthusiast. I love participating in contests,
           building full-stack projects, and exploring cutting-edge technologies.
         </p>
-        <Link href={'/edit_profile'}><Button className="mt-4 bg-cyan-600 hover:bg-cyan-700 cursor-pointer">Edit Profile</Button></Link>
+        <Link href={'/profile/edit_profile'}><Button className="mt-4 bg-cyan-600 hover:bg-cyan-700 cursor-pointer">Edit Profile</Button></Link>
       </div>
 
       {/* Stats Section */}

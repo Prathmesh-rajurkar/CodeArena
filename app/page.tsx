@@ -10,7 +10,7 @@ import HeroSection from "@/components/HeroSection";
 
 export default function Home() {
   return (
-    <div className="bg-black text-white min-h-screen">
+    <div className=" bg-transparent text-white min-h-screen">
       {/* <ShootingStars/> */}
       <div className="pt-[80px]">
         {/* <Navbars /> */}

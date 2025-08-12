@@ -35,7 +35,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center px-4 z-50">
+    <div className="min-h-screen bg-transparent text-white flex items-center justify-center px-4 z-50">
       <div className="w-full max-w-md bg-gray-950 border border-white/10 rounded-xl shadow-lg p-8 space-y-6 z-50">
         <h2 className="text-3xl font-bold text-center">Create Account</h2>
         <p className="text-gray-400 text-center text-sm">Register to start coding and competing.</p>

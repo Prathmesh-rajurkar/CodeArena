@@ -7,6 +7,7 @@ import { ShootingStars } from "@/components/ui/shooting-stars";
 import { StarsBackground } from "@/components/ui/stars-background";
 import { usePathname } from "next/navigation";
 import { Providers } from "./providers";
+import { Toaster } from "@/components/ui/sonner";
 
 // You can't export metadata from a client component. Move it to a server file if needed.
 
@@ -26,8 +27,9 @@ export default function RootLayout({
         <Providers>
           {shouldShowNavbar && <Navbars />}
           <main className="flex-1">{children}</main>
-          <ShootingStars />
-          <StarsBackground />
+          <Toaster/>
+          <ShootingStars className="-z-50 h-full" />
+          <StarsBackground className="-z-50 h-screen" />
         </Providers>
       </body>
     </html>

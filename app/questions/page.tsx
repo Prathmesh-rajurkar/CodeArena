@@ -4,7 +4,7 @@ import React from "react";
 
 function page() {
   return (
-    <div className="bg-black text-white min-h-screen">
+    <div className="bg-transparent text-white min-h-screen">
       <div className="pt-[80px]">
         <ExploreProblems />
       </div>
