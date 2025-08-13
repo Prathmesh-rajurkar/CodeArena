@@ -5,11 +5,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { upload } from "@imagekit/next";
+import { useRouter } from "next/navigation";
 
 export default function EditProfilePage() {
   const { data: session, update } = useSession();
   const user = session?.user;
-  console.log("User session data:", user);
+  const router = useRouter();
+  // console.log("User session data:", user);
   const [bio, setBio] = useState(user?.description || "");
   const [previewUrl, setPreviewUrl] = useState(user?.image || "");
   const [file, setFile] = useState<File | null>(null);
@@ -41,10 +43,14 @@ export default function EditProfilePage() {
             signature: auth.signature,
             expire: auth.expire,
             token: auth.token,
+            transformation:{
+              pre: "w-300,h-300,quality-80,format-jpg",
+            }
           });
 
           if (!res?.url) throw new Error("Image upload failed");
           finalImageUrl = res.url;
+          setPreviewUrl(finalImageUrl); // Update preview with uploaded image URL
         } catch (uploadErr) {
           console.error("Image upload failed, saving bio anyway:", uploadErr);
         }
@@ -58,9 +64,15 @@ export default function EditProfilePage() {
       });
 
       if (!updateRes.ok) throw new Error("Failed to update profile");
-
-      // Refresh session with new data
-      await update({ image: finalImageUrl, description: bio });
+      router.push("/profile"); 
+      const sessionUpdate = await update({
+        user: {
+          ...session?.user,
+          image: finalImageUrl,
+          description: bio,
+        },
+      });
+      console.log("Session updated:", sessionUpdate);
     } catch (err) {
       console.error("Save failed:", err);
     } finally {

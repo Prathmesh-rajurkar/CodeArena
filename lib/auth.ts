@@ -25,7 +25,10 @@ export const authOptions: NextAuthOptions = {
           throw new Error("No user found with this email");
         }
 
-        const isValid = await bcrypt.compare(credentials.password, user.password);
+        const isValid = await bcrypt.compare(
+          credentials.password,
+          user.password
+        );
         if (!isValid) {
           throw new Error("Invalid password");
         }
@@ -45,22 +48,29 @@ export const authOptions: NextAuthOptions = {
   ],
 
   callbacks: {
-    async jwt({ token, user }) {
-      // First time login
+    async jwt({ token, user, trigger, session }) {
+      // On login
       if (user) {
         token.id = user.id;
         token.email = user.email;
         token.image = (user as any).image || "";
         token.description = (user as any).description || "";
-      } else {
-        // On subsequent requests, fetch from DB if missing
-        if (!token.image || !token.description) {
-          await dbConnect();
-          const dbUser = await User.findById(token.id).select("image description");
-          token.image = dbUser?.image || "";
-          token.description = dbUser?.description || "";
-        }
       }
+
+      // When client calls update()
+      if (trigger === "update" && session) {
+        token.image = session.user?.image || token.image;
+        token.description = session.user?.description || token.description;
+      }
+
+      // Always refresh from DB to stay in sync
+      await dbConnect();
+      const dbUser = await User.findById(token.id).select("image description");
+      if (dbUser) {
+        token.image = dbUser.image || token.image;
+        token.description = dbUser.description || token.description;
+      }
+
       return token;
     },
 

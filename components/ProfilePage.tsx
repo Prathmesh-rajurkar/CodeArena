@@ -63,10 +63,9 @@ export default function ProfilePage() {
           <AvatarImage src={user?.image || ''} alt={user?.name || 'U'} />
           <AvatarFallback className='bg-black text-6xl'>{user?.email?.charAt(0).toUpperCase() || "U"}</AvatarFallback>
         </Avatar>
-        <h1 className="text-2xl font-bold">{user?.name || 'Username'}</h1>
+        <h1 className="text-2xl font-bold">{user?.email || 'Username'}</h1>
         <p className="text-gray-400 mt-2 max-w-xl">
-          Passionate problem solver and software enthusiast. I love participating in contests,
-          building full-stack projects, and exploring cutting-edge technologies.
+          {user?.description}
         </p>
         <Link href={'/profile/edit_profile'}><Button className="mt-4 bg-cyan-600 hover:bg-cyan-700 cursor-pointer">Edit Profile</Button></Link>
       </div>
