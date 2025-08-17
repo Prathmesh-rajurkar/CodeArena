@@ -14,7 +14,7 @@ export async function PUT(req: Request) {
     await dbConnect();
 
     const { image, description } = await req.json();
-    const updateData: Record<string, any> = {};
+    const updateData: Record<string, unknown> = {};
 
     if (image) updateData.image = image;
     if (description !== undefined) updateData.description = description;

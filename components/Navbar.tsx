@@ -17,7 +17,7 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 function Navbars() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

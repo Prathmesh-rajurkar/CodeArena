@@ -53,8 +53,8 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         token.id = user.id;
         token.email = user.email;
-        token.image = (user as any).image || "";
-        token.description = (user as any).description || "";
+        token.image = user.image || "";
+        token.description = user.description || "";
       }
 
       // When client calls update()
