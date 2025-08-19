@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import {
   ResizableHandle,
   ResizablePanel,
@@ -8,29 +9,72 @@ import QuestionInfo from "@/components/QuestionInfo";
 import CodeEditor from "@/components/CodeEditor";
 import TestCaseList from "@/components/TestCaseList";
 import { ScrollArea } from "@/components/ui/scroll-area";
-function page() {
-  const testCases = [
-    { input: "nums = [2,7,11,15], target = 9", expectedOutput: "[0,1]" },
-    { input: "nums = [3,2,4], target = 6", expectedOutput: "[1,2]" },
-  ];
+import { useParams } from "next/navigation";
+
+interface Question {
+  title: string;
+  description: string;
+  difficulty: "easy" | "medium" | "hard";
+  test_cases: { _id: string; input: string; expected_output: string }[];
+  starter_code : {_id:string,language: string; code: string}[];
+}
+
+function Page() {
+  const [question, setQuestion] = useState<Question | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const params = useParams();
+  const slug = params.slug as string;
+
+  useEffect(() => {
+    const fetchQuestion = async () => {
+      try {
+        const res = await fetch(`/api/questions/${slug}`, {
+          cache: "no-store",
+        });
+        if (!res.ok) throw new Error("Failed to fetch question");
+        const data = await res.json();
+        // console.log("Fetched question data:", data);
+        
+        setQuestion(data);
+      } catch (err) {
+        setError("Error fetching question");
+      }
+    };
+    fetchQuestion();
+  }, [slug]);
+
+  if (error) return <div>{error}</div>;
+  if (!question)
+    return (
+      <div className="flex items-center justify-center h-screen">
+        Loading...
+      </div>
+    );
+
   return (
     <div className="w-screen h-screen pt-12">
-      <ResizablePanelGroup direction="horizontal" className="rounded-lg z-50 p-0">
+      <ResizablePanelGroup
+        direction="horizontal"
+        className="rounded-lg z-50 p-0"
+      >
+        {/* Left Panel - Question Info */}
         <ResizablePanel defaultSize={50} className="m-2">
-          <ScrollArea className="flex justify-center z-50 flex-1 h-full  pl-2 py-0">
-            <QuestionInfo />
+          <ScrollArea className="h-full w-full">
+            <QuestionInfo question={question} />
           </ScrollArea>
         </ResizablePanel>
         <ResizableHandle withHandle className="bg-gray-900" />
+
+        {/* Right Panel - Code + Test Cases */}
         <ResizablePanel defaultSize={50} className="m-2">
           <ResizablePanelGroup direction="vertical">
             <ResizablePanel defaultSize={60} className="z-50">
-              <CodeEditor />
+              <CodeEditor starter_code = {question?.starter_code} />
             </ResizablePanel>
             <ResizableHandle withHandle className="bg-gray-900" />
             <ResizablePanel defaultSize={40} className="mt-2 z-50">
-              <ScrollArea className="z-50 h-full items-center justify-center ">
-                <TestCaseList testCases={testCases} />
+              <ScrollArea className="h-full w-full">
+                <TestCaseList testCases={question.test_cases} />
               </ScrollArea>
             </ResizablePanel>
           </ResizablePanelGroup>
@@ -40,4 +84,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
