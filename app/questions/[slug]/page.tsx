@@ -23,6 +23,7 @@ function Page() {
   const [question, setQuestion] = useState<Question | null>(null);
   const [error, setError] = useState<string | null>(null);
   const params = useParams();
+  const [results, setResults] = useState<any[]>([]); 
   const slug = params.slug as string;
 
   useEffect(() => {
@@ -69,12 +70,12 @@ function Page() {
         <ResizablePanel defaultSize={50} className="m-2">
           <ResizablePanelGroup direction="vertical">
             <ResizablePanel defaultSize={60} className="z-50">
-              <CodeEditor starter_code = {question?.starter_code} />
+              <CodeEditor starter_code = {question?.starter_code} onResults={(res: any[]) => setResults(res)}/>
             </ResizablePanel>
             <ResizableHandle withHandle className="bg-gray-900" />
             <ResizablePanel defaultSize={40} className="mt-2 z-50">
               <ScrollArea className="h-full w-full">
-                <TestCaseList testCases={question.test_cases} />
+                <TestCaseList testCases={question.test_cases} results={results} />
               </ScrollArea>
             </ResizablePanel>
           </ResizablePanelGroup>

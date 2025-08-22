@@ -19,32 +19,36 @@ export async function POST(req: NextRequest) {
     console.log(userId);
   }
   try {
-    const { code, language_id, questionId } = await req.json();
+    const { code, language_id, question_slug } = await req.json();
 
-    const question = await Question.findById(questionId);
+    const question = await Question.findOne({ slug: question_slug });
     if (!question) {
       return NextResponse.json(
         { error: "Question not found" },
         { status: 404 }
       );
     }
+    console.log(language_id, code, question_slug);
 
     const testCases = question.test_cases;
 
     const results = [];
-
+    // const responses = [];
     for (const test of testCases) {
       const result = await runCodeOnJudge0(language_id, code, test.input);
-
-      const actual = (result.stdout || result.stderr || "").trim();
+      // responses.push(result);
+      const actual = result.stdout?.trim() || "";
+      const error = result.stderr?.trim() || "";
       const expected = test.expected_output.trim();
 
-      const passed = actual === expected;
+      // const passed = actual.toLowerCase() === expected.toLowerCase();
+      const passed = result.status?.id === 3; 
 
       results.push({
         input: test.input,
         expected_output: expected,
         actual_output: actual,
+        error: error,
         status: passed ? "Passed" : "Failed",
       });
     }
@@ -88,7 +92,7 @@ export async function POST(req: NextRequest) {
         output: JSON.stringify(results),
       });
     }
-
+    // console.log("Submission results:", responses);
     return NextResponse.json({
       verdict: allPassed ? "Accepted" : "Wrong Answer",
       results,

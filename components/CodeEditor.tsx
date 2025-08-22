@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import Editor from "@monaco-editor/react";
+import { useParams } from "next/navigation";
 
 interface StarterCodeItem {
   language: string;
@@ -9,20 +10,34 @@ interface StarterCodeItem {
   _id: string;
 }
 
-export default function CodeEditor({ starter_code }: { starter_code?: StarterCodeItem[] }) {
-  const initialLanguage = "javascript"; // Default language
+export default function CodeEditor({
+  starter_code,
+  onResults,
+}: {
+  starter_code?: StarterCodeItem[];
+  onResults: (res: any[]) => void;
+}) {
+  const initialLanguage = "python"; // Default language
+  const question_slug = useParams().slug as string;
+  const [isLoading, setIsLoading] = useState(false);
+  const LANGUAGES: Record<"javascript" | "python" | "java" | "cpp", number> = {
+    javascript: 63,
+    python: 28,
+    java: 4,
+    cpp: 2,
+  };
 
-  // Convert array into object { javascript: "...", python: "..." }
+  type LanguageKey = keyof typeof LANGUAGES;
+
+  function getLangId(language: LanguageKey) {
+    return LANGUAGES[language];
+  }
   const starter_code_map = useMemo(() => {
-    return (starter_code || []).reduce(
-      (acc: Record<string, string>, item) => {
-        acc[item.language] = item.code;
-        return acc;
-      },
-      {}
-    );
+    return (starter_code || []).reduce((acc: Record<string, string>, item) => {
+      acc[item.language] = item.code;
+      return acc;
+    }, {});
   }, [starter_code]);
-
   const [language, setLanguage] = useState(initialLanguage);
   const [code, setCode] = useState(starter_code_map[initialLanguage] || "");
 
@@ -32,9 +47,34 @@ export default function CodeEditor({ starter_code }: { starter_code?: StarterCod
     }
   }, [language, starter_code_map]);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     console.log("Submitted code:", code);
+    console.log("Selected language:", getLangId(language as LanguageKey));
     // TODO: send code to backend
+    setIsLoading(true);
+    try {
+      const results = await fetch("/api/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          language_id: getLangId(language as LanguageKey),
+          code,
+          question_slug: question_slug,
+        }),
+      });
+      if (!results.ok) {
+        throw new Error("Failed to submit code");
+      }
+      const data = await results.json();
+      onResults(data.results || []);
+      console.log("Submission results:", data.results);
+    } catch (error) {
+      console.error("Error submitting code:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -47,7 +87,7 @@ export default function CodeEditor({ starter_code }: { starter_code?: StarterCod
             onClick={handleSubmit}
             className="bg-cyan-500 text-black font-semibold px-4 py-1.5 rounded hover:bg-cyan-400 transition"
           >
-            Submit
+            {isLoading ? "Submitting..." : "Submit"}
           </button>
         </div>
 
@@ -77,7 +117,7 @@ export default function CodeEditor({ starter_code }: { starter_code?: StarterCod
           options={{
             fontSize: 14,
             minimap: { enabled: false },
-            scrollBeyondLastLine: false,
+            scrollBeyondLastLine: true,
             automaticLayout: true,
             wordWrap: "on",
             smoothScrolling: true,
