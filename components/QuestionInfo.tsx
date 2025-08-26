@@ -1,7 +1,18 @@
 "use client";
 
-
-export default function QuestionInfo({question} : {question: any}) {
+interface TestCase{
+  _id: string;
+  input: string;
+  expected_output: string;
+}
+interface Question{
+  title: string;
+  description: string;
+  difficulty: "easy" | "medium" | "hard";
+  test_cases: TestCase[];
+  starter_code : {_id:string,language: string; code: string}[];
+}
+export default function QuestionInfo({question} : {question: Question}) {
   return (
     <div className="flex-1 z-50 h-full rounded">
       <div className="max-w-4xl mx-auto bg-black/70 backdrop-blur-md text-white border border-gray-800 rounded shadow-2xl ">
@@ -33,7 +44,7 @@ export default function QuestionInfo({question} : {question: any}) {
           <section className="space-y-3">
             <h2 className="text-2xl font-semibold text-white">Examples</h2>
             <div className="space-y-4">
-              {question?.test_cases.map((ex:any) => (
+              {question?.test_cases.map((ex:TestCase) => (
                 <div
                   key={ex._id}
                   className="bg-white/5 border border-white/10 p-4 rounded-lg shadow-md"

@@ -37,13 +37,22 @@ export async function runCodeOnJudge0(language_id: number, source_code: string, 
       attempts++;
     }
     throw new Error("Judge0 Timeout");
-  } catch (error: any) {
-    if (error.response.headers['x-ratelimit-submissions-remaining'] == 0) {
+  } catch (err: unknown) {
+  if (axios.isAxiosError(err)) {
+    const remaining = err.response?.headers?.['x-ratelimit-submissions-remaining'];
+
+    if (remaining === "0" || remaining === 0) {
       throw new Error("Judge0 API rate limit exceeded. Please try again later.");
+    } else {
+      console.error("Error running code on Judge0:", err.response?.data || err.message);
+      throw new Error(err.response?.data?.message || "Failed to run code on Judge0");
     }
-    else {
-      console.error("Error running code on Judge0:", error);
-      throw new Error(error.response?.data?.message || "Failed to run code on Judge0");
-    }
+  } else if (err instanceof Error) {
+    console.error("Unexpected error running code on Judge0:", err.message);
+    throw err;
+  } else {
+    console.error("Unknown error running code on Judge0:", err);
+    throw new Error("Unknown error occurred");
   }
+}
 }

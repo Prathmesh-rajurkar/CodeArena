@@ -7,10 +7,16 @@ interface TestCase {
   input: string;
   expected_output: string;
 }
-
+interface Results{
+  input: string;
+  expected_output: string;
+  actual_output: string;
+  error: string;
+  status: "Passed" | "Failed";
+}
 interface TestCaseListProps {
   testCases: TestCase[];
-  results?: any[];
+  results?: Results[];
 }
 
 export default function TestCaseList({ testCases, results }: TestCaseListProps) {

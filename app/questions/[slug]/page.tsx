@@ -18,12 +18,18 @@ interface Question {
   test_cases: { _id: string; input: string; expected_output: string }[];
   starter_code : {_id:string,language: string; code: string}[];
 }
-
+export interface Results{
+  input: string;
+  expected_output: string;
+  actual_output: string;
+  error: string;
+  status: "Passed" | "Failed";
+}
 function Page() {
   const [question, setQuestion] = useState<Question | null>(null);
   const [error, setError] = useState<string | null>(null);
   const params = useParams();
-  const [results, setResults] = useState<any[]>([]); 
+  const [results, setResults] = useState<Results[]>([]); 
   const slug = params.slug as string;
 
   useEffect(() => {
@@ -37,7 +43,8 @@ function Page() {
         // console.log("Fetched question data:", data);
         
         setQuestion(data);
-      } catch (err) {
+      } catch (error) {
+        console.error(error);
         setError("Error fetching question");
       }
     };
@@ -70,7 +77,7 @@ function Page() {
         <ResizablePanel defaultSize={50} className="m-2">
           <ResizablePanelGroup direction="vertical">
             <ResizablePanel defaultSize={60} className="z-50">
-              <CodeEditor starter_code = {question?.starter_code} onResults={(res: any[]) => setResults(res)}/>
+              <CodeEditor starter_code = {question?.starter_code} onResults={(res: Results[]) => setResults(res)}/>
             </ResizablePanel>
             <ResizableHandle withHandle className="bg-gray-900" />
             <ResizablePanel defaultSize={40} className="mt-2 z-50">

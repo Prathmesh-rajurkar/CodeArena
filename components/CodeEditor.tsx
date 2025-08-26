@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import Editor from "@monaco-editor/react";
 import { useParams } from "next/navigation";
+import { Results } from "@/app/questions/[slug]/page";
 
 interface StarterCodeItem {
   language: string;
@@ -15,7 +16,7 @@ export default function CodeEditor({
   onResults,
 }: {
   starter_code?: StarterCodeItem[];
-  onResults: (res: any[]) => void;
+  onResults: (res: Results[]) => void;
 }) {
   const initialLanguage = "python"; // Default language
   const question_slug = useParams().slug as string;
