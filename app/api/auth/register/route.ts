@@ -1,4 +1,5 @@
 import { dbConnect } from "@/lib/db";
+import generateUsername from "@/lib/generateUsername";
 import User from "@/models/User";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -22,9 +23,10 @@ export async function POST(request: NextRequest) {
         { status: 401 }
       );
     }
-
+    const username = generateUsername(email);
     await User.create({
       email,
+      username,
       password,
     });
 
