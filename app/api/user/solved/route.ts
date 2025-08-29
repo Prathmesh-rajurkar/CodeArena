@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { dbConnect } from "@/lib/db";
-import User from "@/models/User";
+// import User from "@/models/User";
 // import Question from "@/models/Question";
 import { NextResponse } from "next/server";
 import Submission from "@/models/Submission";
@@ -9,7 +9,7 @@ import Submission from "@/models/Submission";
 export async function GET() {
   await dbConnect();
   const session = await getServerSession(authOptions);
-  const email = session?.user?.email;
+  // const email = session?.user?.email;
   const userId = session?.user?.id;
   if (!userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
