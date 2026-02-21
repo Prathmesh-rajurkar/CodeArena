@@ -8,6 +8,7 @@ import { StarsBackground } from "@/components/ui/stars-background";
 import { usePathname } from "next/navigation";
 import { Providers } from "./providers";
 import { Toaster } from "@/components/ui/sonner";
+import { Analytics } from "@vercel/analytics/next";
 
 // You can't export metadata from a client component. Move it to a server file if needed.
 
@@ -28,6 +29,7 @@ export default function RootLayout({
           {shouldShowNavbar && <Navbars />}
           <main className="flex-1">{children}</main>
           <Toaster/>
+          <Analytics />
           <ShootingStars className="-z-50 h-full" />
           <StarsBackground className="-z-50 h-screen" />
         </Providers>
